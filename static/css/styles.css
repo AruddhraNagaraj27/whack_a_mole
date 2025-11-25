@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/static/images/game_background.png');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+#gameContainer {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+#gameGrid {
+    display: grid;
+    gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #ffd700;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.mole {
+    width: 60px;
+    height: 60px;
+    animation: pop 0.5s ease;
+}
+
+.hammer {
+    width: 60px;
+    height: 60px;
+}
+
+.star {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    animation: starAnimation 2s ease-out forwards;
+    transform-origin: center;
+    z-index: 10;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes starAnimation {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}

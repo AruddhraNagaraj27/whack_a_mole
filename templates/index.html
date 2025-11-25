@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whack-a-Mole Game</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div id="gameContainer">
+      <h1>Whack-a-Mole</h1>
+
+      <div id="controls">
+        <label for="gridSizeInput">Grid Size:</label>
+        <input type="number" id="gridSizeInput" value="3" min="3" max="6" />
+
+        <!-- Player name input -->
+        <label for="playerNameInput" style="margin-left: 10px">Player:</label>
+        <input type="text" id="playerNameInput" placeholder="Enter name" />
+
+        <!-- Difficulty buttons (added) -->
+        <div
+          id="difficultyControls"
+          style="display: inline-block; margin-left: 10px"
+        >
+          <button
+            class="difficulty-btn"
+            data-difficulty="Easy"
+            onclick="setDifficulty('Easy')"
+          >
+            Easy
+          </button>
+          <button
+            class="difficulty-btn"
+            data-difficulty="Medium"
+            onclick="setDifficulty('Medium')"
+          >
+            Medium
+          </button>
+          <button
+            class="difficulty-btn"
+            data-difficulty="Hard"
+            onclick="setDifficulty('Hard')"
+          >
+            Hard
+          </button>
+        </div>
+
+        <button onclick="startGame()">Start Game</button>
+      </div>
+
+      <div id="scoreBoard">
+        <p>Score: <span id="score">0</span></p>
+        <p id="level">Level: 1</p>
+      </div>
+
+      <div id="controlButtons">
+        <button id="pauseButton" onclick="pauseGame()">Pause</button>
+        <button id="resumeButton" onclick="resumeGame()" style="display: none">
+          Resume
+        </button>
+        <button id="endGameButton" onclick="endGame()">End Game</button>
+        <!-- Leaderboard link -->
+        <a href="/leaderboard" style="margin-left: 10px; text-decoration: none">
+          <button id="leaderboardButton">Leaderboard</button>
+        </a>
+      </div>
+
+      <div id="gameGrid"></div>
+    </div>
+
+    <audio
+      id="backgroundMusic"
+      src="{{ url_for('static', filename='sounds/background.mp3') }}"
+      loop
+    ></audio>
+    <audio
+      id="hitSound"
+      src="{{ url_for('static', filename='sounds/hit.mp3') }}"
+    ></audio>
+    <audio
+      id="missSound"
+      src="{{ url_for('static', filename='sounds/miss.mp3') }}"
+    ></audio>
+    <audio
+      id="levelUpSound"
+      src="{{ url_for('static', filename='sounds/level_up.mp3') }}"
+    ></audio>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

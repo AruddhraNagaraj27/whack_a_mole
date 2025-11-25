@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <style>
+    /* small scoreboard tweaks that won't affect main UI */
+    #leaderboardContainer {
+      margin: 20px auto;
+      width: 500px;
+      background-color: rgba(255,255,255,0.9);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { padding: 8px; text-align: left; }
+    tbody tr:nth-child(odd) { background: rgba(0,0,0,0.03); }
+  </style>
+</head>
+<body>
+  <div id="leaderboardContainer">
+    <h1>Leaderboard</h1>
+    <a href="/"><button>Back to Game</button></a>
+    {% if scores %}
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Player</th>
+          <th>Score</th>
+          <th>Difficulty</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in scores %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ s.player_name }}</td>
+          <td>{{ s.score }}</td>
+          <td>{{ s.difficulty }}</td>
+          <td>{{ s.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No scores yet. Be the first!</p>
+    {% endif %}
+  </div>
+</body>
+</html>
